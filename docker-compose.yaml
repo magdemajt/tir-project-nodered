@@ -1,0 +1,41 @@
+services:
+  node-red:
+    image: nodered/node-red:latest
+    environment:
+      - TZ=Europe/Warsaw
+    ports:
+      - "1880:1880"
+    networks:
+      - node-red-net
+#    bind ./node-red to data
+    volumes:
+      - ./node-red:/data
+    restart: always
+
+  dirt-model:
+    image: python:3.11-alpine
+    networks:
+      - node-red-net
+    volumes:
+      - ./dirtmodel:/dirtmodel
+    command: python /dirtmodel/main.py
+    restart: always
+  mqtt-broker:
+    image: eclipse-mosquitto:latest
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    networks:
+      - node-red-net
+    volumes:
+      - mosquitto-data:/mosquitto/data
+      - ./mosquitto-log:/mosquitto/log
+      - ./mosquitto.conf:/mosquitto/config/mosquitto.conf
+    command: mosquitto -c /mosquitto/config/mosquitto.conf
+
+
+volumes:
+  mosquitto-data:
+
+networks:
+  node-red-net:
