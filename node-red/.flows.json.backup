@@ -8,35 +8,11 @@
         "env": []
     },
     {
-        "id": "89434c0a686b3aee",
-        "type": "complete",
-        "z": "10d5b7d852248c2d",
-        "name": "",
-        "scope": [],
-        "uncaught": false,
-        "x": 110,
-        "y": 140,
-        "wires": [
-            [
-                "ec654ea3c018940c"
-            ]
-        ]
-    },
-    {
-        "id": "ec654ea3c018940c",
-        "type": "function",
-        "z": "10d5b7d852248c2d",
-        "name": "function 1",
-        "func": "\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 400,
-        "y": 120,
-        "wires": [
-            []
-        ]
+        "id": "76bb5eb420de02af",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": "",
+        "env": []
     }
 ]

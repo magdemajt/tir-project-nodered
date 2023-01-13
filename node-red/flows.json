@@ -14,5 +14,73 @@
         "disabled": false,
         "info": "",
         "env": []
+    },
+    {
+        "id": "f1f77bd131f3cda1",
+        "type": "mqtt-broker",
+        "name": "default-broker",
+        "broker": "mqtt-broker",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "50f5bbcda6590df9",
+        "type": "mqtt in",
+        "z": "10d5b7d852248c2d",
+        "name": "",
+        "topic": "brain",
+        "qos": "2",
+        "datatype": "utf8",
+        "broker": "f1f77bd131f3cda1",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 450,
+        "y": 180,
+        "wires": [
+            [
+                "f507e7625ecb33b8"
+            ]
+        ]
+    },
+    {
+        "id": "f507e7625ecb33b8",
+        "type": "exec",
+        "z": "10d5b7d852248c2d",
+        "command": "",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 630,
+        "y": 180,
+        "wires": [
+            [],
+            [],
+            []
+        ]
     }
 ]

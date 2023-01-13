@@ -10,7 +10,9 @@ services:
 #    bind ./node-red to data
     volumes:
       - ./node-red:/data
-    restart: always
+    restart: unless-stopped
+    depends_on:
+      - mqtt-broker
 
   dirt-model:
     image: python:3.11-alpine
@@ -19,7 +21,10 @@ services:
     volumes:
       - ./dirtmodel:/dirtmodel
     command: python /dirtmodel/main.py
-    restart: always
+    restart: unless-stopped
+    depends_on:
+      - node-red
+      - mqtt-broker
   mqtt-broker:
     image: eclipse-mosquitto:latest
     ports:
@@ -32,6 +37,8 @@ services:
       - ./mosquitto-log:/mosquitto/log
       - ./mosquitto.conf:/mosquitto/config/mosquitto.conf
     command: mosquitto -c /mosquitto/config/mosquitto.conf
+    restart: unless-stopped
+
 
 
 volumes:
