@@ -490,7 +490,7 @@
         "type": "function",
         "z": "10d5b7d852248c2d",
         "name": "function 3",
-        "func": "if (msg.payload ==\"start_irrigation\")\n    msg.payload=\"green\"\nelse\n    msg.payload = \"red\"\nreturn msg;",
+        "func": "if (msg.payload ==\"start_irrigation\"){\n    msg.payload=\"green\"\n    if(!global.get(\"automatization\"))\n        global.set(\"required_wl\", 100)\n}\nelse{\n    msg.payload = \"darkred\"\n    if (!global.get(\"automatization\"))\n        global.set(\"required_wl\", 0)\n}\n    \nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -660,7 +660,7 @@
         "type": "function",
         "z": "10d5b7d852248c2d",
         "name": "function 5",
-        "func": "global.set(\"required_wl\", msg.payload)\n\nreturn msg;",
+        "func": "global.set(\"required_wl\", msg.payload)\nglobal.set(\"last_slider_value\", msg.payload)\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -670,6 +670,57 @@
         "y": 480,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "a8b458a901e3932d",
+        "type": "function",
+        "z": "10d5b7d852248c2d",
+        "name": "function 6",
+        "func": "global.set(\"automatization\", msg.payload)\n\nif(msg.payload){\n    global.set(\"required_wl\", global.get(\"last_slider_value\"))\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "304e4fd460fb45e9",
+        "type": "ui_switch",
+        "z": "10d5b7d852248c2d",
+        "name": "automatization_switch",
+        "label": "Automatization off/on",
+        "tooltip": "off/on",
+        "group": "e1dbf4df87a94135",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 220,
+        "y": 540,
+        "wires": [
+            [
+                "a8b458a901e3932d"
+            ]
         ]
     }
 ]

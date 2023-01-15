@@ -208,7 +208,8 @@
             [
                 "07632dfd847f42cd",
                 "0496f6bb10ee5bb3",
-                "abf273e4a0da12d9"
+                "abf273e4a0da12d9",
+                "93944c890b2f2a89"
             ]
         ]
     },
@@ -243,7 +244,7 @@
         "rh": 0,
         "inputs": 0,
         "x": 170,
-        "y": 260,
+        "y": 620,
         "wires": [
             [
                 "f84e197e206285d7"
@@ -264,7 +265,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 690,
-        "y": 260,
+        "y": 620,
         "wires": []
     },
     {
@@ -281,7 +282,7 @@
         "rh": 0,
         "inputs": 0,
         "x": 170,
-        "y": 540,
+        "y": 700,
         "wires": [
             [
                 "4819bb63534df29f",
@@ -303,7 +304,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 580,
-        "y": 540,
+        "y": 700,
         "wires": []
     },
     {
@@ -331,7 +332,7 @@
         "diff": false,
         "className": "",
         "x": 590,
-        "y": 620,
+        "y": 780,
         "wires": []
     },
     {
@@ -346,7 +347,7 @@
         "finalize": "",
         "libs": [],
         "x": 320,
-        "y": 680,
+        "y": 840,
         "wires": [
             [
                 "8bf38b29bd4cd8bb",
@@ -383,7 +384,7 @@
         "diff": false,
         "className": "",
         "x": 600,
-        "y": 680,
+        "y": 840,
         "wires": []
     },
     {
@@ -400,7 +401,7 @@
         "layout": "row-left",
         "className": "textInfo",
         "x": 590,
-        "y": 740,
+        "y": 900,
         "wires": []
     },
     {
@@ -457,8 +458,8 @@
         "offcolor": "",
         "animate": true,
         "className": "",
-        "x": 200,
-        "y": 400,
+        "x": 640,
+        "y": 340,
         "wires": [
             [
                 "f2e06b1c1ac16aa7",
@@ -480,8 +481,8 @@
         "correl": "",
         "expiry": "",
         "broker": "f1f77bd131f3cda1",
-        "x": 430,
-        "y": 460,
+        "x": 870,
+        "y": 400,
         "wires": []
     },
     {
@@ -489,14 +490,14 @@
         "type": "function",
         "z": "10d5b7d852248c2d",
         "name": "function 3",
-        "func": "if (msg.payload ==\"start_irrigation\")\n    msg.payload=\"green\"\nelse\n    msg.payload = \"red\"\nreturn msg;",
+        "func": "if (msg.payload ==\"start_irrigation\"){\n    msg.payload=\"green\"\n    if(!global.get(\"automatization\"))\n        global.set(\"required_wl\", 100)\n}\nelse{\n    msg.payload = \"red\"\n    if (!global.get(\"automatization\"))\n        global.set(\"required_wl\", 0)\n}\n    \nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 420,
-        "y": 360,
+        "x": 860,
+        "y": 300,
         "wires": [
             [
                 "85582832a05e0a4a"
@@ -519,7 +520,7 @@
         "templateScope": "local",
         "className": "CSS",
         "x": 170,
-        "y": 800,
+        "y": 960,
         "wires": [
             []
         ]
@@ -539,8 +540,8 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 620,
-        "y": 420,
+        "x": 1080,
+        "y": 360,
         "wires": [
             []
         ]
@@ -605,6 +606,120 @@
         "wires": [
             [
                 "d7848d5dc56a48c6"
+            ]
+        ]
+    },
+    {
+        "id": "93944c890b2f2a89",
+        "type": "function",
+        "z": "10d5b7d852248c2d",
+        "name": "automatization",
+        "func": "var required = global.get(\"required_wl\");\nvar margin = 5;\nvar auto = global.get(\"automatization\")\n\n\nif (Math.round(parseFloat(msg.payload) * 100) / 100 < (required - margin)) {\n    msg.payload = \"start_irrigation\";\n}\nif (Math.round(parseFloat(msg.payload) * 100) / 100 > (required + margin)) {\n    msg.payload = \"stop_irrigation\";\n}\n\nmsg.topic = \"ui\";\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 340,
+        "wires": [
+            [
+                "f88380e7861264fc"
+            ]
+        ]
+    },
+    {
+        "id": "36dbb029b978b6b9",
+        "type": "ui_slider",
+        "z": "10d5b7d852248c2d",
+        "name": "",
+        "label": "Set water level",
+        "tooltip": "",
+        "group": "e1dbf4df87a94135",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "end",
+        "topic": "ui",
+        "topicType": "str",
+        "min": 0,
+        "max": "100",
+        "step": "5",
+        "className": "",
+        "x": 200,
+        "y": 480,
+        "wires": [
+            [
+                "54546e17a39981cb"
+            ]
+        ]
+    },
+    {
+        "id": "54546e17a39981cb",
+        "type": "function",
+        "z": "10d5b7d852248c2d",
+        "name": "function 5",
+        "func": "global.set(\"required_wl\", msg.payload)\nglobal.set(\"last_slider_value\", msg.payload)\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a8b458a901e3932d",
+        "type": "function",
+        "z": "10d5b7d852248c2d",
+        "name": "function 6",
+        "func": "global.set(\"automatization\", msg.payload)\n\nif(msg.payload){\n    global.set(\"required_wl\", global.get(\"last_slider_value\"))\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "304e4fd460fb45e9",
+        "type": "ui_switch",
+        "z": "10d5b7d852248c2d",
+        "name": "automatization_switch",
+        "label": "Automatization off/on",
+        "tooltip": "off/on",
+        "group": "e1dbf4df87a94135",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 220,
+        "y": 540,
+        "wires": [
+            [
+                "a8b458a901e3932d"
             ]
         ]
     }
