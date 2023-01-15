@@ -6,15 +6,17 @@ import sys
 from soil import Soil, SoilParameters
 
 soil_lock = threading.Lock()
-params = SoilParameters(humus_level=0.5, looseness=0.5, volume=100, plant_absorb=0.1)
+params = SoilParameters(humus_level=0.5, looseness=0.5,
+                        volume=100, plant_absorb=1)
 soil = Soil(params)
 
-shouldStop = False
-shouldStopLock = threading.Lock()
+shouldIrrigate = False
+shouldIrrigateLock = threading.Lock()
 
 is_connected = False
 
 mqttc = mosquitto.Mosquitto()
+
 
 def soil_thread():
     while True:
@@ -37,16 +39,13 @@ def irrigator_thread_func():
     while True:
         soil_lock.acquire()
         try:
-            soil.irrigate(10)
+            shouldIrrigateLock.acquire()
+            if shouldIrrigate:
+                soil.irrigate(10)
         finally:
+            shouldIrrigateLock.release()
             soil_lock.release()
         time.sleep(2)
-        try:
-            shouldStopLock.acquire()
-            if shouldStop:
-                break
-        finally:
-            shouldStopLock.release() # not sure about this
 
 
 def on_connect(mqttc, obj, rc):
@@ -59,7 +58,7 @@ irrigator_thread = threading.Thread(target=irrigator_thread_func)
 
 
 def on_message(mqttc, obj, msg):
-    global shouldStop
+    global shouldIrrigate
     print("___________received_msg___________")
     received_msg = msg.payload.decode('ASCII')
     # msg.payload can be commands: water_level and start_irrigation, stop_irrigation
@@ -72,15 +71,20 @@ def on_message(mqttc, obj, msg):
                 soil_lock.release()
         elif received_msg == 'start_irrigation':
             print("_________received_start_msg_________")
-            if not irrigator_thread.is_alive():
-                irrigator_thread.start()
+            if irrigator_thread.is_alive():
+                print("_________received_start_msg_IM_IN_________")
+                try:
+                    shouldIrrigateLock.acquire()
+                    shouldIrrigate = True
+                finally:
+                    shouldIrrigateLock.release()
         elif received_msg == 'stop_irrigation':
             print("_________received_stop_msg_________")
             try:
-                shouldStopLock.acquire()
-                shouldStop = True
+                shouldIrrigateLock.acquire()
+                shouldIrrigate = False
             finally:
-                shouldStopLock.release()
+                shouldIrrigateLock.release()
     except:
         print('error')
         sys.stdout.flush()
@@ -115,5 +119,5 @@ if __name__ == '__main__':
     mqttc.publish("brain", "20", 0, False)
 
     threading.Thread(target=soil_thread).start()
-
+    irrigator_thread.start()
     mqttc.loop_start()
