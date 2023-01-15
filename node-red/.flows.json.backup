@@ -14,5 +14,277 @@
         "disabled": false,
         "info": "",
         "env": []
+    },
+    {
+        "id": "f1f77bd131f3cda1",
+        "type": "mqtt-broker",
+        "name": "default-broker",
+        "broker": "mqtt-broker",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "50f5bbcda6590df9",
+        "type": "mqtt in",
+        "z": "10d5b7d852248c2d",
+        "name": "",
+        "topic": "brain",
+        "qos": "2",
+        "datatype": "utf8",
+        "broker": "f1f77bd131f3cda1",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 330,
+        "y": 180,
+        "wires": [
+            [
+                "07632dfd847f42cd"
+            ]
+        ]
+    },
+    {
+        "id": "07632dfd847f42cd",
+        "type": "debug",
+        "z": "10d5b7d852248c2d",
+        "name": "brain_received_message",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 690,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "111e0d7857575585",
+        "type": "inject",
+        "z": "10d5b7d852248c2d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 420,
+        "wires": [
+            [
+                "5db2097bfaf902c5"
+            ]
+        ]
+    },
+    {
+        "id": "5db2097bfaf902c5",
+        "type": "function",
+        "z": "10d5b7d852248c2d",
+        "name": "start_irrigation",
+        "func": "msg.payload = \"start_irrigation\"\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 420,
+        "wires": [
+            [
+                "3a325e5f4ad0bc73"
+            ]
+        ]
+    },
+    {
+        "id": "3a325e5f4ad0bc73",
+        "type": "mqtt out",
+        "z": "10d5b7d852248c2d",
+        "name": "",
+        "topic": "soil",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "f1f77bd131f3cda1",
+        "x": 770,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "d99860e6bbb34f12",
+        "type": "inject",
+        "z": "10d5b7d852248c2d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 580,
+        "wires": [
+            [
+                "90b51aa2d7eef242"
+            ]
+        ]
+    },
+    {
+        "id": "90b51aa2d7eef242",
+        "type": "function",
+        "z": "10d5b7d852248c2d",
+        "name": "stop_irrigation",
+        "func": "msg.payload = \"stop_irrigation\"\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 580,
+        "wires": [
+            [
+                "c3f8374a416c044d"
+            ]
+        ]
+    },
+    {
+        "id": "c3f8374a416c044d",
+        "type": "mqtt out",
+        "z": "10d5b7d852248c2d",
+        "name": "",
+        "topic": "soil",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "f1f77bd131f3cda1",
+        "x": 770,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "79b9bd30260bbd4e",
+        "type": "debug",
+        "z": "10d5b7d852248c2d",
+        "name": "sent_message",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 800,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "f507e7625ecb33b8",
+        "type": "exec",
+        "z": "10d5b7d852248c2d",
+        "command": "",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 630,
+        "y": 100,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "8b5901615ff44505",
+        "type": "mqtt in",
+        "z": "10d5b7d852248c2d",
+        "name": "",
+        "topic": "soil",
+        "qos": "2",
+        "datatype": "utf8",
+        "broker": "f1f77bd131f3cda1",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 330,
+        "y": 260,
+        "wires": [
+            [
+                "f84e197e206285d7"
+            ]
+        ]
+    },
+    {
+        "id": "f84e197e206285d7",
+        "type": "debug",
+        "z": "10d5b7d852248c2d",
+        "name": "brain_received_message",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 690,
+        "y": 260,
+        "wires": []
     }
 ]
