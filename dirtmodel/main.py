@@ -60,18 +60,22 @@ irrigator_thread = threading.Thread(target=irrigator_thread_func)
 
 def on_message(mqttc, obj, msg):
     global shouldStop
+    print("___________received_msg___________")
+    received_msg = msg.payload.decode('ASCII')
     # msg.payload can be commands: water_level and start_irrigation, stop_irrigation
     try:
-        if msg.payload == 'water_level':
+        if received_msg == 'water_level':
             soil_lock.acquire()
             try:
                 mqttc.publish('brain', soil.get_water_level())
             finally:
                 soil_lock.release()
-        elif msg.payload == 'start_irrigation':
+        elif received_msg == 'start_irrigation':
+            print("_________received_start_msg_________")
             if not irrigator_thread.is_alive():
                 irrigator_thread.start()
-        elif msg.payload == 'stop_irrigation':
+        elif received_msg == 'stop_irrigation':
+            print("_________received_stop_msg_________")
             try:
                 shouldStopLock.acquire()
                 shouldStop = True
