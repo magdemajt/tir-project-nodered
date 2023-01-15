@@ -420,7 +420,7 @@
         "name": "node-red-dashboard",
         "version": "3.3.1",
         "local": true,
-        "user": true,
+        "user": false,
         "nodes": {
             "ui_base": {
                 "name": "ui_base",
