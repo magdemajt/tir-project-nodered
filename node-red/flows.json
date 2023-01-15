@@ -16,6 +16,14 @@
         "env": []
     },
     {
+        "id": "1e7922ce88b6e784",
+        "type": "tab",
+        "label": "Flow 3",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "f1f77bd131f3cda1",
         "type": "mqtt-broker",
         "name": "default-broker",
@@ -45,7 +53,7 @@
     {
         "id": "32ee08c02388f345",
         "type": "ui_tab",
-        "name": "Home",
+        "name": "Sprinkler system",
         "icon": "dashboard",
         "disabled": false,
         "hidden": false
@@ -54,7 +62,7 @@
         "id": "1f6bb068ce14c72a",
         "type": "ui_base",
         "theme": {
-            "name": "theme-light",
+            "name": "theme-dark",
             "lightTheme": {
                 "default": "#0094CE",
                 "baseColor": "#0094CE",
@@ -66,54 +74,56 @@
                 "default": "#097479",
                 "baseColor": "#097479",
                 "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
-                "edited": false
+                "edited": true,
+                "reset": false
             },
             "customTheme": {
                 "name": "Untitled Theme 1",
                 "default": "#4B7930",
                 "baseColor": "#4B7930",
-                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "reset": false
             },
             "themeState": {
                 "base-color": {
-                    "default": "#0094CE",
-                    "value": "#0094CE",
+                    "default": "#097479",
+                    "value": "#097479",
                     "edited": false
                 },
                 "page-titlebar-backgroundColor": {
-                    "value": "#0094CE",
+                    "value": "#097479",
                     "edited": false
                 },
                 "page-backgroundColor": {
-                    "value": "#fafafa",
-                    "edited": false
-                },
-                "page-sidebar-backgroundColor": {
-                    "value": "#ffffff",
-                    "edited": false
-                },
-                "group-textColor": {
-                    "value": "#1bbfff",
-                    "edited": false
-                },
-                "group-borderColor": {
-                    "value": "#ffffff",
-                    "edited": false
-                },
-                "group-backgroundColor": {
-                    "value": "#ffffff",
-                    "edited": false
-                },
-                "widget-textColor": {
                     "value": "#111111",
                     "edited": false
                 },
+                "page-sidebar-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#0eb8c0",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#555555",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#eeeeee",
+                    "edited": false
+                },
                 "widget-backgroundColor": {
-                    "value": "#0094ce",
+                    "value": "#097479",
                     "edited": false
                 },
                 "widget-borderColor": {
-                    "value": "#ffffff",
+                    "value": "#333333",
                     "edited": false
                 },
                 "base-font": {
@@ -154,7 +164,7 @@
         "tab": "32ee08c02388f345",
         "order": 1,
         "disp": true,
-        "width": "6",
+        "width": 10,
         "collapse": false,
         "className": ""
     },
@@ -168,6 +178,16 @@
         "width": "6",
         "collapse": false,
         "className": ""
+    },
+    {
+        "id": "b2e57f9bbe8b1bf3",
+        "type": "ui_spacer",
+        "z": "10d5b7d852248c2d",
+        "name": "spacer",
+        "group": "e1dbf4df87a94135",
+        "order": 2,
+        "width": 1,
+        "height": 1
     },
     {
         "id": "50f5bbcda6590df9",
@@ -259,8 +279,8 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 290,
-        "y": 700,
+        "x": 170,
+        "y": 540,
         "wires": [
             [
                 "4819bb63534df29f",
@@ -281,8 +301,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 700,
-        "y": 700,
+        "x": 580,
+        "y": 540,
         "wires": []
     },
     {
@@ -291,9 +311,9 @@
         "z": "10d5b7d852248c2d",
         "name": "Temperature",
         "group": "393e2b7eeca6bec8",
-        "order": 0,
-        "width": 0,
-        "height": 0,
+        "order": 1,
+        "width": 5,
+        "height": 4,
         "gtype": "gage",
         "title": "Temperature",
         "label": "℃",
@@ -309,8 +329,8 @@
         "seg2": "24",
         "diff": false,
         "className": "",
-        "x": 710,
-        "y": 780,
+        "x": 590,
+        "y": 620,
         "wires": []
     },
     {
@@ -324,8 +344,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 440,
-        "y": 840,
+        "x": 320,
+        "y": 680,
         "wires": [
             [
                 "8bf38b29bd4cd8bb",
@@ -343,9 +363,9 @@
         "z": "10d5b7d852248c2d",
         "name": "Humidity Level",
         "group": "393e2b7eeca6bec8",
-        "order": 1,
-        "width": 0,
-        "height": 0,
+        "order": 2,
+        "width": 5,
+        "height": 4,
         "gtype": "donut",
         "title": "Humidity",
         "label": "%",
@@ -361,8 +381,8 @@
         "seg2": "66",
         "diff": false,
         "className": "",
-        "x": 720,
-        "y": 840,
+        "x": 600,
+        "y": 680,
         "wires": []
     },
     {
@@ -370,25 +390,25 @@
         "type": "ui_text",
         "z": "10d5b7d852248c2d",
         "group": "393e2b7eeca6bec8",
-        "order": 2,
-        "width": "6",
-        "height": "2",
+        "order": 3,
+        "width": 10,
+        "height": 1,
         "name": "Wind Speed ",
         "label": "Wind speed",
         "format": "{{msg.payload.wind_speed}}km/h",
-        "layout": "row-spread",
-        "className": "",
-        "x": 710,
-        "y": 900,
+        "layout": "row-left",
+        "className": "textInfo",
+        "x": 590,
+        "y": 740,
         "wires": []
     },
     {
         "id": "0496f6bb10ee5bb3",
         "type": "ui_gauge",
         "z": "10d5b7d852248c2d",
-        "name": "Water Leve;",
+        "name": "Water Level",
         "group": "e1dbf4df87a94135",
-        "order": 0,
+        "order": 4,
         "width": 0,
         "height": 0,
         "gtype": "wave",
@@ -415,7 +435,7 @@
         "type": "function",
         "z": "10d5b7d852248c2d",
         "name": "function 2",
-        "func": "msg.payload.temperature = Math.round(parseFloat(msg.payload.temperature) * 100) / 100\n\nreturn msg;",
+        "func": "msg.payload.water_level = Math.round(parseFloat(msg.payload.water_level) * 100) / 100\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -437,9 +457,9 @@
         "label": "Turn on sprinkler",
         "tooltip": "",
         "group": "e1dbf4df87a94135",
-        "order": 3,
-        "width": 0,
-        "height": 0,
+        "order": 1,
+        "width": 4,
+        "height": 1,
         "passthru": true,
         "decouple": "false",
         "topic": "soil",
@@ -455,11 +475,12 @@
         "offcolor": "",
         "animate": true,
         "className": "",
-        "x": 320,
-        "y": 560,
+        "x": 200,
+        "y": 400,
         "wires": [
             [
-                "f2e06b1c1ac16aa7"
+                "f2e06b1c1ac16aa7",
+                "d9c0fb1443eaedad"
             ]
         ]
     },
@@ -477,8 +498,69 @@
         "correl": "",
         "expiry": "",
         "broker": "f1f77bd131f3cda1",
-        "x": 710,
-        "y": 560,
+        "x": 430,
+        "y": 460,
         "wires": []
+    },
+    {
+        "id": "d9c0fb1443eaedad",
+        "type": "function",
+        "z": "10d5b7d852248c2d",
+        "name": "function 3",
+        "func": "if (msg.payload ==\"start_irrigation\")\n    msg.payload=\"green\"\nelse\n    msg.payload = \"red\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 360,
+        "wires": [
+            [
+                "85582832a05e0a4a"
+            ]
+        ]
+    },
+    {
+        "id": "7441777cd78f5ef2",
+        "type": "ui_template",
+        "z": "10d5b7d852248c2d",
+        "group": "393e2b7eeca6bec8",
+        "name": "CSS",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "format": "<style>\n\n.isActiveDiode{\n    background-color:red;\n    border-radius:50%;\n    width:25px;\n    height:25px;\n    position:relative;\n    top:20%;\n}\n.textInfo{\n    border-top:2px solid rgb(9,116,121);\n    border-bottom:2px solid rgb(9,116,121);\n}\n\n</style>",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "CSS",
+        "x": 170,
+        "y": 800,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "85582832a05e0a4a",
+        "type": "ui_template",
+        "z": "10d5b7d852248c2d",
+        "group": "e1dbf4df87a94135",
+        "name": "",
+        "order": 3,
+        "width": 1,
+        "height": 1,
+        "format": "<div  class=\"isActiveDiode\" style=\"background-color:{{msg.payload}}\">\n\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 620,
+        "y": 420,
+        "wires": [
+            []
+        ]
     }
 ]
