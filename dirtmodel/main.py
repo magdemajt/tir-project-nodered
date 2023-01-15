@@ -23,9 +23,11 @@ def soil_thread():
         soil_lock.acquire()
         try:
             soil.tick()
-            if is_connected and soil.tick_ % 4 == 0:
+            if (is_connected and soil.tick_ % 4 == 0) or shouldIrrigate:
                 mqttc.publish('brain', soil.get_water_level())
                 print('water level: ', soil.get_water_level())
+                mqttc.publish('weather', soil.get_weather())
+
                 sys.stdout.flush()
         except Exception as e:
             print('soil thread error', e)
@@ -62,6 +64,7 @@ def on_message(mqttc, obj, msg):
     print("___________received_msg___________")
     received_msg = msg.payload.decode('ASCII')
     # msg.payload can be commands: water_level and start_irrigation, stop_irrigation
+    print("RECEIVED MSG: ", received_msg)
     try:
         if received_msg == 'water_level':
             soil_lock.acquire()
@@ -85,6 +88,7 @@ def on_message(mqttc, obj, msg):
                 shouldIrrigate = False
             finally:
                 shouldIrrigateLock.release()
+
     except:
         print('error')
         sys.stdout.flush()
@@ -114,6 +118,8 @@ if __name__ == '__main__':
     mqttc.connect("mqtt-broker", 1883, 60)
 
     mqttc.subscribe("soil", 0)
+
+    mqttc.subscribe("ui", 0)
 
     # publishing message on topic with QoS 0 and the message is not Retained
     mqttc.publish("brain", "20", 0, False)

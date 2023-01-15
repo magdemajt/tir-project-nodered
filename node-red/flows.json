@@ -43,6 +43,133 @@
         "sessionExpiry": ""
     },
     {
+        "id": "32ee08c02388f345",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "1f6bb068ce14c72a",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "393e2b7eeca6bec8",
+        "type": "ui_group",
+        "name": "Weather Sensors",
+        "tab": "32ee08c02388f345",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "e1dbf4df87a94135",
+        "type": "ui_group",
+        "name": "Sprinkler",
+        "tab": "32ee08c02388f345",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
         "id": "50f5bbcda6590df9",
         "type": "mqtt in",
         "z": "10d5b7d852248c2d",
@@ -55,11 +182,12 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 330,
+        "x": 170,
         "y": 180,
         "wires": [
             [
-                "07632dfd847f42cd"
+                "07632dfd847f42cd",
+                "8f34bd268fe5d4c6"
             ]
         ]
     },
@@ -81,175 +209,6 @@
         "wires": []
     },
     {
-        "id": "111e0d7857575585",
-        "type": "inject",
-        "z": "10d5b7d852248c2d",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 180,
-        "y": 420,
-        "wires": [
-            [
-                "5db2097bfaf902c5"
-            ]
-        ]
-    },
-    {
-        "id": "5db2097bfaf902c5",
-        "type": "function",
-        "z": "10d5b7d852248c2d",
-        "name": "start_irrigation",
-        "func": "msg.payload = \"start_irrigation\"\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 420,
-        "y": 420,
-        "wires": [
-            [
-                "3a325e5f4ad0bc73"
-            ]
-        ]
-    },
-    {
-        "id": "3a325e5f4ad0bc73",
-        "type": "mqtt out",
-        "z": "10d5b7d852248c2d",
-        "name": "",
-        "topic": "soil",
-        "qos": "0",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "f1f77bd131f3cda1",
-        "x": 770,
-        "y": 420,
-        "wires": []
-    },
-    {
-        "id": "d99860e6bbb34f12",
-        "type": "inject",
-        "z": "10d5b7d852248c2d",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 180,
-        "y": 580,
-        "wires": [
-            [
-                "90b51aa2d7eef242"
-            ]
-        ]
-    },
-    {
-        "id": "90b51aa2d7eef242",
-        "type": "function",
-        "z": "10d5b7d852248c2d",
-        "name": "stop_irrigation",
-        "func": "msg.payload = \"stop_irrigation\"\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 420,
-        "y": 580,
-        "wires": [
-            [
-                "c3f8374a416c044d"
-            ]
-        ]
-    },
-    {
-        "id": "c3f8374a416c044d",
-        "type": "mqtt out",
-        "z": "10d5b7d852248c2d",
-        "name": "",
-        "topic": "soil",
-        "qos": "0",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "f1f77bd131f3cda1",
-        "x": 770,
-        "y": 580,
-        "wires": []
-    },
-    {
-        "id": "79b9bd30260bbd4e",
-        "type": "debug",
-        "z": "10d5b7d852248c2d",
-        "name": "sent_message",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 800,
-        "y": 500,
-        "wires": []
-    },
-    {
-        "id": "f507e7625ecb33b8",
-        "type": "exec",
-        "z": "10d5b7d852248c2d",
-        "command": "",
-        "addpay": "",
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "",
-        "x": 630,
-        "y": 100,
-        "wires": [
-            [],
-            [],
-            []
-        ]
-    },
-    {
         "id": "8b5901615ff44505",
         "type": "mqtt in",
         "z": "10d5b7d852248c2d",
@@ -262,7 +221,7 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 330,
+        "x": 170,
         "y": 260,
         "wires": [
             [
@@ -285,6 +244,241 @@
         "statusType": "auto",
         "x": 690,
         "y": 260,
+        "wires": []
+    },
+    {
+        "id": "04fa03dfb3add09c",
+        "type": "mqtt in",
+        "z": "10d5b7d852248c2d",
+        "name": "",
+        "topic": "weather",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "f1f77bd131f3cda1",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 290,
+        "y": 700,
+        "wires": [
+            [
+                "4819bb63534df29f",
+                "4556d7393ee5fd69"
+            ]
+        ]
+    },
+    {
+        "id": "4819bb63534df29f",
+        "type": "debug",
+        "z": "10d5b7d852248c2d",
+        "name": "weather_received_message",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 700,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "8bf38b29bd4cd8bb",
+        "type": "ui_gauge",
+        "z": "10d5b7d852248c2d",
+        "name": "Temperature",
+        "group": "393e2b7eeca6bec8",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Temperature",
+        "label": "℃",
+        "format": "{{msg.payload.temperature}}",
+        "min": "10",
+        "max": "30",
+        "colors": [
+            "#0080ff",
+            "#00ff40",
+            "#ca3838"
+        ],
+        "seg1": "16",
+        "seg2": "24",
+        "diff": false,
+        "className": "",
+        "x": 710,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "4556d7393ee5fd69",
+        "type": "function",
+        "z": "10d5b7d852248c2d",
+        "name": "function 1",
+        "func": "msg.payload.temperature = Math.round(msg.payload.temperature * 100) / 100\nmsg.payload.humidity = Math.round(msg.payload.humidity * 100) / 100\nmsg.payload.wind_speed = Math.round(msg.payload.wind_speed * 100) / 100\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 840,
+        "wires": [
+            [
+                "8bf38b29bd4cd8bb",
+                "45adfd366598ca3a",
+                "caf8c7b458a22327"
+            ]
+        ],
+        "outputLabels": [
+            "temperature"
+        ]
+    },
+    {
+        "id": "45adfd366598ca3a",
+        "type": "ui_gauge",
+        "z": "10d5b7d852248c2d",
+        "name": "Humidity Level",
+        "group": "393e2b7eeca6bec8",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "donut",
+        "title": "Humidity",
+        "label": "%",
+        "format": "{{msg.payload.humidity}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#cc0000",
+            "#e6e600",
+            "#0080c0"
+        ],
+        "seg1": "33",
+        "seg2": "66",
+        "diff": false,
+        "className": "",
+        "x": 720,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "caf8c7b458a22327",
+        "type": "ui_text",
+        "z": "10d5b7d852248c2d",
+        "group": "393e2b7eeca6bec8",
+        "order": 2,
+        "width": "6",
+        "height": "2",
+        "name": "Wind Speed ",
+        "label": "Wind speed",
+        "format": "{{msg.payload.wind_speed}}km/h",
+        "layout": "row-spread",
+        "className": "",
+        "x": 710,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "0496f6bb10ee5bb3",
+        "type": "ui_gauge",
+        "z": "10d5b7d852248c2d",
+        "name": "Water Leve;",
+        "group": "e1dbf4df87a94135",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "wave",
+        "title": "Water level",
+        "label": "L",
+        "format": "{{msg.payload}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 490,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "8f34bd268fe5d4c6",
+        "type": "function",
+        "z": "10d5b7d852248c2d",
+        "name": "function 2",
+        "func": "msg.payload.temperature = Math.round(parseFloat(msg.payload.temperature) * 100) / 100\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 100,
+        "wires": [
+            [
+                "0496f6bb10ee5bb3"
+            ]
+        ]
+    },
+    {
+        "id": "f88380e7861264fc",
+        "type": "ui_switch",
+        "z": "10d5b7d852248c2d",
+        "name": "Sprinkler switch",
+        "label": "Turn on sprinkler",
+        "tooltip": "",
+        "group": "e1dbf4df87a94135",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "soil",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "start_irrigation",
+        "onvalueType": "str",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "stop_irrigation",
+        "offvalueType": "str",
+        "officon": "",
+        "offcolor": "",
+        "animate": true,
+        "className": "",
+        "x": 320,
+        "y": 560,
+        "wires": [
+            [
+                "f2e06b1c1ac16aa7"
+            ]
+        ]
+    },
+    {
+        "id": "f2e06b1c1ac16aa7",
+        "type": "mqtt out",
+        "z": "10d5b7d852248c2d",
+        "name": "",
+        "topic": "ui",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "f1f77bd131f3cda1",
+        "x": 710,
+        "y": 560,
         "wires": []
     }
 ]

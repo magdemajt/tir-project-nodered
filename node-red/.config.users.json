@@ -17,10 +17,11 @@
             }
         },
         "debug": {
-            "filter": "filterAll",
+            "filter": "filterSelected",
             "filteredNodes": [
                 "79b9bd30260bbd4e",
-                "07632dfd847f42cd"
+                "f84e197e206285d7",
+                "4819bb63534df29f"
             ]
         }
     }
