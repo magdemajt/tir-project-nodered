@@ -180,7 +180,7 @@
         "className": ""
     },
     {
-        "id": "5a3143468e791db7",
+        "id": "b2e57f9bbe8b1bf3",
         "type": "ui_spacer",
         "z": "10d5b7d852248c2d",
         "name": "spacer",
@@ -392,7 +392,7 @@
         "group": "393e2b7eeca6bec8",
         "order": 3,
         "width": 10,
-        "height": 2,
+        "height": 1,
         "name": "Wind Speed ",
         "label": "Wind speed",
         "format": "{{msg.payload.wind_speed}}km/h",

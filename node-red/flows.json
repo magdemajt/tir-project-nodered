@@ -207,7 +207,8 @@
         "wires": [
             [
                 "07632dfd847f42cd",
-                "8f34bd268fe5d4c6"
+                "0496f6bb10ee5bb3",
+                "abf273e4a0da12d9"
             ]
         ]
     },
@@ -224,8 +225,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 690,
-        "y": 180,
+        "x": 450,
+        "y": 200,
         "wires": []
     },
     {
@@ -426,28 +427,9 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 490,
-        "y": 100,
+        "x": 410,
+        "y": 80,
         "wires": []
-    },
-    {
-        "id": "8f34bd268fe5d4c6",
-        "type": "function",
-        "z": "10d5b7d852248c2d",
-        "name": "function 2",
-        "func": "msg.payload.water_level = Math.round(parseFloat(msg.payload.water_level) * 100) / 100\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 320,
-        "y": 100,
-        "wires": [
-            [
-                "0496f6bb10ee5bb3"
-            ]
-        ]
     },
     {
         "id": "f88380e7861264fc",
@@ -561,6 +543,69 @@
         "y": 420,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "d7848d5dc56a48c6",
+        "type": "ui_chart",
+        "z": "10d5b7d852248c2d",
+        "name": "",
+        "group": "e1dbf4df87a94135",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "label": "Water Chart",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "100",
+        "removeOlder": "15",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 550,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "abf273e4a0da12d9",
+        "type": "function",
+        "z": "10d5b7d852248c2d",
+        "name": "function 4",
+        "func": "let d = new Date();\nlet timestamp = d.getTime();\nreturn { payload: msg.payload, timestamp: timestamp }",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 140,
+        "wires": [
+            [
+                "d7848d5dc56a48c6"
+            ]
         ]
     }
 ]
