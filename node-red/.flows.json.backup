@@ -182,12 +182,13 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 170,
+        "x": 150,
         "y": 180,
         "wires": [
             [
                 "07632dfd847f42cd",
-                "8f34bd268fe5d4c6"
+                "8f34bd268fe5d4c6",
+                "479b73513e570c0b"
             ]
         ]
     },
@@ -221,8 +222,8 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 170,
-        "y": 260,
+        "x": 150,
+        "y": 360,
         "wires": [
             [
                 "f84e197e206285d7"
@@ -243,7 +244,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 690,
-        "y": 260,
+        "y": 360,
         "wires": []
     },
     {
@@ -259,7 +260,7 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 290,
+        "x": 250,
         "y": 700,
         "wires": [
             [
@@ -281,7 +282,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 700,
+        "x": 760,
         "y": 700,
         "wires": []
     },
@@ -386,7 +387,7 @@
         "id": "0496f6bb10ee5bb3",
         "type": "ui_gauge",
         "z": "10d5b7d852248c2d",
-        "name": "Water Leve;",
+        "name": "Water Level",
         "group": "e1dbf4df87a94135",
         "order": 0,
         "width": 0,
@@ -406,7 +407,7 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 490,
+        "x": 610,
         "y": 100,
         "wires": []
     },
@@ -421,7 +422,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 320,
+        "x": 360,
         "y": 100,
         "wires": [
             [
@@ -455,38 +456,11 @@
         "offcolor": "",
         "animate": true,
         "className": "",
-        "x": 320,
-        "y": 560,
+        "x": 640,
+        "y": 280,
         "wires": [
             [
                 "f2e06b1c1ac16aa7"
-            ]
-        ]
-    },
-    {
-        "id": "f98dca517fc9c1db",
-        "type": "ui_slider",
-        "z": "10d5b7d852248c2d",
-        "name": "",
-        "label": "Sprinkler flow rate",
-        "tooltip": "Change amount of water passing through sprinkler",
-        "group": "e1dbf4df87a94135",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "outs": "end",
-        "topic": "topic",
-        "topicType": "msg",
-        "min": 0,
-        "max": 10,
-        "step": "0.5",
-        "className": "",
-        "x": 330,
-        "y": 500,
-        "wires": [
-            [
-                "65208dc5c2a47823"
             ]
         ]
     },
@@ -504,26 +478,89 @@
         "correl": "",
         "expiry": "",
         "broker": "f1f77bd131f3cda1",
-        "x": 710,
-        "y": 560,
+        "x": 850,
+        "y": 280,
         "wires": []
     },
     {
-        "id": "65208dc5c2a47823",
+        "id": "e0439a18e1e1dae5",
+        "type": "ui_slider",
+        "z": "10d5b7d852248c2d",
+        "name": "",
+        "label": "Set water level",
+        "tooltip": "water level",
+        "group": "e1dbf4df87a94135",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "end",
+        "topic": "ui",
+        "topicType": "str",
+        "min": 0,
+        "max": "100",
+        "step": "5",
+        "className": "",
+        "x": 180,
+        "y": 480,
+        "wires": [
+            [
+                "ebc97dd145771b10"
+            ]
+        ]
+    },
+    {
+        "id": "4734d4d750243337",
+        "type": "debug",
+        "z": "10d5b7d852248c2d",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 620,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "479b73513e570c0b",
         "type": "function",
         "z": "10d5b7d852248c2d",
-        "name": "function 3",
-        "func": "console.log(msg)\nreturn msg;",
+        "name": "automatization",
+        "func": "var required = global.get(\"required_wl\");\nvar margin = 5;\nvar auto = global.get(\"automatization\")\n\nif(Math.round(parseFloat(msg.payload) * 100) / 100 < (required - margin)){\n    msg.payload = \"start_irrigation\";\n}\nif (Math.round(parseFloat(msg.payload) * 100) / 100 > (required + margin)){\n    msg.payload = \"stop_irrigation\";\n}\nmsg.topic = \"ui\";\n\n\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 520,
-        "y": 500,
+        "x": 400,
+        "y": 280,
         "wires": [
             [
-                "f2e06b1c1ac16aa7"
+                "f88380e7861264fc"
+            ]
+        ]
+    },
+    {
+        "id": "ebc97dd145771b10",
+        "type": "function",
+        "z": "10d5b7d852248c2d",
+        "name": "read_from_slider",
+        "func": "global.set(\"required_wl\", msg.payload)\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 480,
+        "wires": [
+            [
+                "4734d4d750243337"
             ]
         ]
     }
