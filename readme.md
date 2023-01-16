@@ -41,7 +41,7 @@ Inside dashboard view you can monitor the current wheater and the humidity insid
 
 DirtModel was implemented in Python. To better the performance of our application, we used the Python threading library to listen to MQTT messages on another thread.
 
-Our soil model is very advanced, it has realtime realitime parameters like humus, looseness, volume and plant water absorption. All of them have an impact on how quickly the water will be evaporating and how much water the plant will absorb. Weather (temperature, air humidity and speed of wind) also can influence water absorption.
+Our soil model is very advanced, it has real time parameters like humus, looseness, volume and plant water absorption. All of them have an impact on how quickly the water will be evaporating and how much water the plant will absorb. Weather (temperature, air humidity and speed of wind) also influence water absorption.
 
 Dirt model communicates with MQTT broker on topic *"brain"*
 
