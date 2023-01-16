@@ -1,3 +1,5 @@
 /node-red/.npm/
+/node-red/node_modules/
 /mosquitto-log/
+dirtmodel/__pycache__/
 .idea
