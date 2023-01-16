@@ -11,6 +11,8 @@ services:
     volumes:
       - ./node-red:/data
     restart: unless-stopped
+    command:
+      - npm install
     depends_on:
       - mqtt-broker
 
