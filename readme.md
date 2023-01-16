@@ -4,25 +4,25 @@
 
 ## Overview
 
-This project was made for IoT classes on UST Cracow. The goal of this project was to create a software that can be used as a tool for monitoring the humidity of plant soil. The project was desinged for small devices like rasberry pi, however due to technical limitations we used Docker to simulate different parts of the system.
+This project was made for IoT classes on UST Cracow. The goal of this project was to create software that can be used as a tool for monitoring the humidity of plant soil. The project was designed for small devices like Raspberry pi however, due to technical limitations we used Docker to simulate different parts of the system.
 
-The application is composed of three different componnets:
-- Dirtmodel - mockup of the soil and deivce with sensors that would measure dirt humidity
-- Water Valve - a mockup of device that would control flow of the water, integrated in *Dirtmodel*
-- Mqtt broker - in our case we used mosquitto, we use it to communicate between different components
-- Node Red - an proggraming tool for wiring together software and hardware
+The application is composed of three different components:
+- Dirtmodel - mockup of the soil and device with sensors that would measure dirt humidity
+- Water Valve - a mockup of a device that would control the flow of the water, integrated into *Dirtmodel*
+- MQTT broker - in our case we used mosquito, we use it to communicate between different components
+- Node-Red - a programming tool for wiring together software and hardware
 
-Moreover, we implemneted an Node Red dashboard which will display all necessary information to the user and will alow him to control the Water Valve.
+Moreover, we implemented a Node-Red dashboard which will display all necessary information to the user and will allow him to control the Water Valve.
 
 ### How To Run Application
 
-We provide an Docker Compose container that contains the entire application. In order to run it make sure that you have Docker Compose installed and type:
+We provide a Docker Compose container that contains the entire application. To run it make sure that you have Docker Compose installed and type:
 
 ```
 docker compose up -d
 ```
 
-To interact with application proceede to https:localhost:1880/ui
+To interact with the application proceede to http://localhpst:1880/ui
 
 ### How to control the application
 
@@ -36,20 +36,19 @@ Inside dashboard view you can monitor the current wheater and the humidity insid
 
 ### DirtModel
 
-DirtModel was implemented in Pyhton. In order to better the performance of our application, we used Python threading library to listen to mqqt msessages on another thread.
+DirtModel was implemented in Python. To better the performance of our application, we used the Python threading library to listen to MQTT messages on another thread.
 
-Our soil model is very advanced, it has multiple realitime parameters like: humus, looseness, volume and plant water absortion. All of them have the impact on how quickly the water will be evaporating and how much water the plant will absorb. Weather (temperature, air humidity and speed of wind) also can influence on water absorption.
+Our soil model is very advanced, it has realtime realitime parameters like humus, looseness, volume and plant water absorption. All of them have an impact on how quickly the water will be evaporating and how much water the plant will absorb. Weather (temperature, air humidity and speed of wind) also can influence water absorption.
 
-
-Dirt model communicates with mqqt broker on topic *"brain"*
+Dirt model communicates with MQTT broker on topic *"brain"*
 
 ### Mqqt protocol
 
-To communicate between different components we use Mqqt Protocol. For the mqqt broker we use Mosquitto implemntation.
+To communicate between different components we use MQQTT Protocol. For the MQQTT broker, we use Mosquitto implementation.
 
 ### Node-Red
 
-The rest of application logic was implemented in Node-Red flow diagram.
+The rest of the application logic was implemented in the Node-Red flow diagram.
 
 ![flow](./flow.jpg)
 
