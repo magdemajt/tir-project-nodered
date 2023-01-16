@@ -1,5 +1,8 @@
 # Irrigation System
 
+## Link to repository:
+https://github.com/magdemajt/tir-project-nodered.git
+
 ### Project made by: Mateusz Wejman, Mateusz Mazur, Mikołaj Klimek, Karol Wrona
 
 ## Overview
@@ -22,7 +25,7 @@ We provide a Docker Compose container that contains the entire application. To r
 docker compose up -d
 ```
 
-To interact with the application proceede to http://localhpst:1880/ui
+To interact with the application proceede to http://localhost:1880/ui
 
 ### How to control the application
 
