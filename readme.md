@@ -30,7 +30,7 @@ In dashboard user can turn on and off automatization of watering. If automatizat
 
 Inside dashboard view you can monitor the current wheater and the humidity inside the soil. Below the gauge you can see chart that will plot the water level for past 15 minutes (for production release the time interval would be bigger but for the sake of testing we decided to use 15 minute time window). In the top right corner, you will see a switch that will allow user to control the water valve.
 
-#### PLZ wrzuccie tu zdjecie tego dashboardu
+![dashboard](./dashboard.jpg)
 
 ## Implementation
 
@@ -51,6 +51,6 @@ To communicate between different components we use Mqqt Protocol. For the mqqt b
 
 The rest of application logic was implemented in Node-Red flow diagram.
 
-#### PLz wrzuccie tu zdjecie
+![flow](./flow.jpg)
 
 Node red allows user to control the hardware through Node-Red-Dashboard which is plugin to the Node-Red service. The Node-Red server is self hosted and client can interact with it through web application.
