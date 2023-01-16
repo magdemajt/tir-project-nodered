@@ -1,5 +1,9 @@
 # Irrigation System
 
+## Link to repository:
+
+https://github.com/magdemajt/tir-project-nodered.git
+
 ### Project made by: Mateusz Wejman, Mateusz Mazur, Mikołaj Klimek, Karol Wrona
 
 ## Overview
@@ -22,7 +26,7 @@ We provide a Docker Compose container that contains the entire application. To r
 docker compose up -d
 ```
 
-To interact with the application proceede to http://localhpst:1880/ui
+To interact with the application proceede to http://localhost:1880/ui
 
 ### How to control the application
 
@@ -53,3 +57,7 @@ The rest of the application logic was implemented in the Node-Red flow diagram.
 ![flow](./flow.jpg)
 
 Node red allows user to control the hardware through Node-Red-Dashboard which is plugin to the Node-Red service. The Node-Red server is self hosted and client can interact with it through web application.
+
+### Warning
+
+If you don't see dashboard it might happen that you need to install Node-Red-Dashboard plugin, the best way to do it is to isntall it through Node-Red web app. Please in the top right menu select dropdown menu and select *mannage pallette*, then you can search for *node-red-dashboard* and install it from there. 
