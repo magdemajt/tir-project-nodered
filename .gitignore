@@ -1,3 +1,4 @@
 /node-red/.npm/
 /mosquitto-log/
 .idea
+/dirtmodel/__pycache__/
