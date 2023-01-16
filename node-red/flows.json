@@ -16,6 +16,14 @@
         "env": []
     },
     {
+        "id": "1e7922ce88b6e784",
+        "type": "tab",
+        "label": "Flow 3",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "f1f77bd131f3cda1",
         "type": "mqtt-broker",
         "name": "default-broker",
@@ -43,6 +51,145 @@
         "sessionExpiry": ""
     },
     {
+        "id": "32ee08c02388f345",
+        "type": "ui_tab",
+        "name": "Sprinkler system",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "1f6bb068ce14c72a",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-dark",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "reset": false
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#097479",
+                    "value": "#097479",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#097479",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#0eb8c0",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#555555",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#eeeeee",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#097479",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "393e2b7eeca6bec8",
+        "type": "ui_group",
+        "name": "Weather Sensors",
+        "tab": "32ee08c02388f345",
+        "order": 1,
+        "disp": true,
+        "width": 10,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "e1dbf4df87a94135",
+        "type": "ui_group",
+        "name": "Sprinkler",
+        "tab": "32ee08c02388f345",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "b2e57f9bbe8b1bf3",
+        "type": "ui_spacer",
+        "z": "10d5b7d852248c2d",
+        "name": "spacer",
+        "group": "e1dbf4df87a94135",
+        "order": 2,
+        "width": 1,
+        "height": 1
+    },
+    {
         "id": "50f5bbcda6590df9",
         "type": "mqtt in",
         "z": "10d5b7d852248c2d",
@@ -55,32 +202,525 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 450,
+        "x": 170,
         "y": 180,
         "wires": [
             [
-                "f507e7625ecb33b8"
+                "07632dfd847f42cd",
+                "0496f6bb10ee5bb3",
+                "abf273e4a0da12d9",
+                "93944c890b2f2a89"
             ]
         ]
     },
     {
-        "id": "f507e7625ecb33b8",
-        "type": "exec",
+        "id": "07632dfd847f42cd",
+        "type": "debug",
         "z": "10d5b7d852248c2d",
-        "command": "",
-        "addpay": "",
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
+        "name": "brain_received_message",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 450,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "8b5901615ff44505",
+        "type": "mqtt in",
+        "z": "10d5b7d852248c2d",
         "name": "",
-        "x": 630,
-        "y": 180,
+        "topic": "soil",
+        "qos": "2",
+        "datatype": "utf8",
+        "broker": "f1f77bd131f3cda1",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 170,
+        "y": 620,
         "wires": [
-            [],
-            [],
+            [
+                "f84e197e206285d7"
+            ]
+        ]
+    },
+    {
+        "id": "f84e197e206285d7",
+        "type": "debug",
+        "z": "10d5b7d852248c2d",
+        "name": "soil_received_message",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 690,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "04fa03dfb3add09c",
+        "type": "mqtt in",
+        "z": "10d5b7d852248c2d",
+        "name": "",
+        "topic": "weather",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "f1f77bd131f3cda1",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 170,
+        "y": 700,
+        "wires": [
+            [
+                "4819bb63534df29f",
+                "4556d7393ee5fd69"
+            ]
+        ]
+    },
+    {
+        "id": "4819bb63534df29f",
+        "type": "debug",
+        "z": "10d5b7d852248c2d",
+        "name": "weather_received_message",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 580,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "8bf38b29bd4cd8bb",
+        "type": "ui_gauge",
+        "z": "10d5b7d852248c2d",
+        "name": "Temperature",
+        "group": "393e2b7eeca6bec8",
+        "order": 1,
+        "width": 5,
+        "height": 4,
+        "gtype": "gage",
+        "title": "Temperature",
+        "label": "℃",
+        "format": "{{msg.payload.temperature}}",
+        "min": "10",
+        "max": "30",
+        "colors": [
+            "#0080ff",
+            "#00ff40",
+            "#ca3838"
+        ],
+        "seg1": "16",
+        "seg2": "24",
+        "diff": false,
+        "className": "",
+        "x": 590,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "4556d7393ee5fd69",
+        "type": "function",
+        "z": "10d5b7d852248c2d",
+        "name": "function 1",
+        "func": "msg.payload.temperature = Math.round(msg.payload.temperature * 100) / 100\nmsg.payload.humidity = Math.round(msg.payload.humidity * 100) / 100\nmsg.payload.wind_speed = Math.round(msg.payload.wind_speed * 100) / 100\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 840,
+        "wires": [
+            [
+                "8bf38b29bd4cd8bb",
+                "45adfd366598ca3a",
+                "caf8c7b458a22327"
+            ]
+        ],
+        "outputLabels": [
+            "temperature"
+        ]
+    },
+    {
+        "id": "45adfd366598ca3a",
+        "type": "ui_gauge",
+        "z": "10d5b7d852248c2d",
+        "name": "Humidity Level",
+        "group": "393e2b7eeca6bec8",
+        "order": 2,
+        "width": 5,
+        "height": 4,
+        "gtype": "donut",
+        "title": "Humidity",
+        "label": "%",
+        "format": "{{msg.payload.humidity}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#cc0000",
+            "#e6e600",
+            "#0080c0"
+        ],
+        "seg1": "33",
+        "seg2": "66",
+        "diff": false,
+        "className": "",
+        "x": 600,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "caf8c7b458a22327",
+        "type": "ui_text",
+        "z": "10d5b7d852248c2d",
+        "group": "393e2b7eeca6bec8",
+        "order": 3,
+        "width": 10,
+        "height": 1,
+        "name": "Wind Speed ",
+        "label": "Wind speed",
+        "format": "{{msg.payload.wind_speed}}km/h",
+        "layout": "row-left",
+        "className": "textInfo",
+        "x": 590,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "0496f6bb10ee5bb3",
+        "type": "ui_gauge",
+        "z": "10d5b7d852248c2d",
+        "name": "Water Level",
+        "group": "e1dbf4df87a94135",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "gtype": "wave",
+        "title": "Water level",
+        "label": "L",
+        "format": "{{msg.payload}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 410,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "f88380e7861264fc",
+        "type": "ui_switch",
+        "z": "10d5b7d852248c2d",
+        "name": "Sprinkler switch",
+        "label": "Turn on sprinkler",
+        "tooltip": "",
+        "group": "e1dbf4df87a94135",
+        "order": 1,
+        "width": 4,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "soil",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "start_irrigation",
+        "onvalueType": "str",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "stop_irrigation",
+        "offvalueType": "str",
+        "officon": "",
+        "offcolor": "",
+        "animate": true,
+        "className": "",
+        "x": 640,
+        "y": 340,
+        "wires": [
+            [
+                "f2e06b1c1ac16aa7",
+                "d9c0fb1443eaedad"
+            ]
+        ]
+    },
+    {
+        "id": "f2e06b1c1ac16aa7",
+        "type": "mqtt out",
+        "z": "10d5b7d852248c2d",
+        "name": "",
+        "topic": "ui",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "f1f77bd131f3cda1",
+        "x": 870,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "d9c0fb1443eaedad",
+        "type": "function",
+        "z": "10d5b7d852248c2d",
+        "name": "function 3",
+        "func": "if (msg.payload ==\"start_irrigation\"){\n    msg.payload=\"green\"\n    if(!global.get(\"automatization\"))\n        global.set(\"required_wl\", 100)\n}\nelse{\n    msg.payload = \"darkred\"\n    if (!global.get(\"automatization\"))\n        global.set(\"required_wl\", 0)\n}\n    \nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 860,
+        "y": 300,
+        "wires": [
+            [
+                "85582832a05e0a4a"
+            ]
+        ]
+    },
+    {
+        "id": "7441777cd78f5ef2",
+        "type": "ui_template",
+        "z": "10d5b7d852248c2d",
+        "group": "393e2b7eeca6bec8",
+        "name": "CSS",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "format": "<style>\n\n.isActiveDiode{\n    background-color:red;\n    border-radius:50%;\n    width:25px;\n    height:25px;\n    position:relative;\n    top:20%;\n}\n.textInfo{\n    border-top:2px solid rgb(9,116,121);\n    border-bottom:2px solid rgb(9,116,121);\n}\n\n</style>",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "CSS",
+        "x": 170,
+        "y": 960,
+        "wires": [
             []
+        ]
+    },
+    {
+        "id": "85582832a05e0a4a",
+        "type": "ui_template",
+        "z": "10d5b7d852248c2d",
+        "group": "e1dbf4df87a94135",
+        "name": "",
+        "order": 3,
+        "width": 1,
+        "height": 1,
+        "format": "<div  class=\"isActiveDiode\" style=\"background-color:{{msg.payload}}\">\n\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1080,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d7848d5dc56a48c6",
+        "type": "ui_chart",
+        "z": "10d5b7d852248c2d",
+        "name": "",
+        "group": "e1dbf4df87a94135",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "label": "Water Chart",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "100",
+        "removeOlder": "15",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 550,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "abf273e4a0da12d9",
+        "type": "function",
+        "z": "10d5b7d852248c2d",
+        "name": "function 4",
+        "func": "let d = new Date();\nlet timestamp = d.getTime();\nreturn { payload: msg.payload, timestamp: timestamp }",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 140,
+        "wires": [
+            [
+                "d7848d5dc56a48c6"
+            ]
+        ]
+    },
+    {
+        "id": "93944c890b2f2a89",
+        "type": "function",
+        "z": "10d5b7d852248c2d",
+        "name": "automatization",
+        "func": "var required = global.get(\"required_wl\");\nvar margin = 5;\nvar auto = global.get(\"automatization\")\n\n\nif (Math.round(parseFloat(msg.payload) * 100) / 100 < (required - margin)) {\n    msg.payload = \"start_irrigation\";\n}\nif (Math.round(parseFloat(msg.payload) * 100) / 100 > (required + margin)) {\n    msg.payload = \"stop_irrigation\";\n}\n\nmsg.topic = \"ui\";\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 340,
+        "wires": [
+            [
+                "f88380e7861264fc"
+            ]
+        ]
+    },
+    {
+        "id": "36dbb029b978b6b9",
+        "type": "ui_slider",
+        "z": "10d5b7d852248c2d",
+        "name": "",
+        "label": "Set water level",
+        "tooltip": "",
+        "group": "e1dbf4df87a94135",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "end",
+        "topic": "ui",
+        "topicType": "str",
+        "min": 0,
+        "max": "100",
+        "step": "5",
+        "className": "",
+        "x": 200,
+        "y": 480,
+        "wires": [
+            [
+                "54546e17a39981cb"
+            ]
+        ]
+    },
+    {
+        "id": "54546e17a39981cb",
+        "type": "function",
+        "z": "10d5b7d852248c2d",
+        "name": "function 5",
+        "func": "global.set(\"required_wl\", msg.payload)\nglobal.set(\"last_slider_value\", msg.payload)\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a8b458a901e3932d",
+        "type": "function",
+        "z": "10d5b7d852248c2d",
+        "name": "function 6",
+        "func": "global.set(\"automatization\", msg.payload)\n\nif(msg.payload){\n    global.set(\"required_wl\", global.get(\"last_slider_value\"))\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "304e4fd460fb45e9",
+        "type": "ui_switch",
+        "z": "10d5b7d852248c2d",
+        "name": "automatization_switch",
+        "label": "Automatization off/on",
+        "tooltip": "off/on",
+        "group": "e1dbf4df87a94135",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 220,
+        "y": 540,
+        "wires": [
+            [
+                "a8b458a901e3932d"
+            ]
         ]
     }
 ]
