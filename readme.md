@@ -26,19 +26,20 @@ To interact with application proceede to https:localhost:1880/ui
 
 ### How to control the application
 
-#### !!!Jakby ktos mogl powiedziec cos wiecej o tej autmoatycznej kotnroli niech da znać
+In dashboard user can turn on and off automatization of watering. If automatization works and water level is below water level set by user on slider, system turn on sprinkler. Watering is turned on, until water level exceed expected value. To avoid too frequent turning sprinkler, water level set by user have 5L margin. If automatization is switched off, user can manually switch on and off watering. When sprinkler is turned off, parameteres are updated onece in 8 seconds. After turned on the watering, user can see changes second by second.  
 
 Inside dashboard view you can monitor the current wheater and the humidity inside the soil. Below the gauge you can see chart that will plot the water level for past 15 minutes (for production release the time interval would be bigger but for the sake of testing we decided to use 15 minute time window). In the top right corner, you will see a switch that will allow user to control the water valve.
 
 #### PLZ wrzuccie tu zdjecie tego dashboardu
 
-## Implemntation
+## Implementation
 
 ### DirtModel
 
 DirtModel was implemented in Pyhton. In order to better the performance of our application, we used Python threading library to listen to mqqt msessages on another thread.
 
-Our soil model is very advanced, it has multiple realitime parameters like: humus, looseness, volume and plant water absortion. All of them have the impact on how quickly the water will be evaporating and how much water the plant will absorb.
+Our soil model is very advanced, it has multiple realitime parameters like: humus, looseness, volume and plant water absortion. All of them have the impact on how quickly the water will be evaporating and how much water the plant will absorb. Weather (temperature, air humidity and speed of wind) also can influence on water absorption.
+
 
 Dirt model communicates with mqqt broker on topic *"brain"*
 
