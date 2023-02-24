@@ -1,10 +1,6 @@
 # Irrigation System
 
 ## Link to repository:
-<<<<<<< HEAD
-
-=======
->>>>>>> communication_issue
 https://github.com/magdemajt/tir-project-nodered.git
 
 ### Project made by: Mateusz Wejman, Mateusz Mazur, Mikołaj Klimek, Karol Wrona
